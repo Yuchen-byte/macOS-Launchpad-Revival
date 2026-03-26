@@ -30,6 +30,7 @@ public final class AppManager {
 
     public init() {
         hiddenAppPaths = Self.loadHiddenPaths()
+        refreshHiddenApps()
     }
 
     public func moveItem(from source: LaunchpadItem, to destination: LaunchpadItem) {
@@ -185,6 +186,7 @@ public final class AppManager {
     public func hideApp(_ app: AppInfo) {
         hiddenAppPaths.insert(app.path)
         saveHiddenPaths()
+        refreshHiddenApps()
         removeAppFromItems(appID: app.id)
         saveLayout()
     }
@@ -206,7 +208,38 @@ public final class AppManager {
     public func restoreHiddenApps() {
         hiddenAppPaths.removeAll()
         saveHiddenPaths()
+        refreshHiddenApps()
         fetchApps()
+    }
+
+    public func unhideApp(at path: String) {
+        hiddenAppPaths.remove(path)
+        saveHiddenPaths()
+        refreshHiddenApps()
+        fetchApps()
+    }
+
+    public var hiddenApps: [AppInfo] = []
+
+    public func resetLayout() {
+        let fileURL = Self.layoutFileURL
+        try? FileManager.default.removeItem(at: fileURL)
+        fetchApps()
+    }
+
+    private func refreshHiddenApps() {
+        let workspace = NSWorkspace.shared
+        hiddenApps = hiddenAppPaths.compactMap { path in
+            guard FileManager.default.fileExists(atPath: path) else {
+                return nil
+            }
+
+            let url = URL(fileURLWithPath: path)
+            let name = Self.appName(for: url)
+            let icon = Self.appIcon(forPath: path, workspace: workspace)
+            return AppInfo(id: UUID(), name: name, path: path, icon: icon)
+        }
+        .sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
     }
 
     private func removeAppFromItems(appID: UUID) {
@@ -381,7 +414,7 @@ public final class AppManager {
         }
     }
 
-    nonisolated private static var layoutFileURL: URL {
+    nonisolated static var layoutFileURL: URL {
         let applicationSupportURL = FileManager.default.urls(
             for: .applicationSupportDirectory,
             in: .userDomainMask

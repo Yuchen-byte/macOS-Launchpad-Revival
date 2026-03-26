@@ -270,7 +270,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyLaunchpad/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,7 +302,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyLaunchpad/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
-
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

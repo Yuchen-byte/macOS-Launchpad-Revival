@@ -12,6 +12,7 @@ extension Notification.Name {
     static let toggleLaunchpad = Notification.Name("ToggleLaunchpad")
     static let hideLaunchpad = Notification.Name("HideLaunchpad")
     static let launchpadWillHide = Notification.Name("LaunchpadWillHide")
+    static let launchpadWillShow = Notification.Name("LaunchpadWillShow")
 }
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -19,6 +20,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var hotKeyHandlerRef: EventHandlerRef?
     private var mainWindow: NSWindow?
     private var hasConfiguredWindow = false
+    private var isHiding = false
 
     private static let hotKeySignature: OSType = 0x4D4C5044
     private static let hotKeyIdentifier: UInt32 = 1
@@ -88,9 +90,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        if !NSApp.isHidden && window.isVisible && window.alphaValue > 0.01 {
+        if !NSApp.isHidden && window.isVisible && window.alphaValue > 0.01 && !isHiding {
             NotificationCenter.default.post(name: .hideLaunchpad, object: nil)
-        } else {
+        } else if !isHiding {
             showWindow(window)
         }
     }
@@ -151,7 +153,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         window.collectionBehavior = [
             .canJoinAllSpaces,
             .stationary,
-            .ignoresCycle,
+            .ignoresCycle, 
             .fullScreenAuxiliary
         ]
 
@@ -186,28 +188,26 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func showWindow(_ window: NSWindow) {
+        isHiding = false
         resizeWindowToMouseScreen(window)
-        window.alphaValue = 0
+        window.alphaValue = 1
 
         NSApp.unhide(nil)
         NSApp.activate(ignoringOtherApps: true)
         window.makeKeyAndOrderFront(nil)
         window.orderFrontRegardless()
 
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.18
-            window.animator().alphaValue = 1
-        }
+        NotificationCenter.default.post(name: .launchpadWillShow, object: nil)
     }
 
     private func hideWindow(_ window: NSWindow) {
+        isHiding = true
         NotificationCenter.default.post(name: .launchpadWillHide, object: nil)
 
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.15
-            window.animator().alphaValue = 0
-        } completionHandler: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [self] in
+            window.alphaValue = 0
             NSApp.hide(nil)
+            isHiding = false
         }
     }
 
@@ -260,10 +260,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 @main
 struct MyLaunchpadApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    @State private var appManager = AppManager()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(appManager: appManager)
                 .onAppear {
                     appDelegate.captureAndConfigureWindowIfNeeded()
                 }
@@ -276,18 +277,32 @@ struct MyLaunchpadApp: App {
         }
         .windowStyle(.hiddenTitleBar)
 
+        Settings {
+            SettingsView(appManager: appManager)
+        }
+
         MenuBarExtra("MyLaunchpad", systemImage: "square.grid.3x3") {
+            Button("偏好设置...") {
+                openSettings()
+            }
+            .keyboardShortcut(",", modifiers: .command)
+            Divider()
             Button(SMAppService.mainApp.status == .enabled ? "✓ 取消开机自启动" : "开机自启动") {
                 appDelegate.toggleLaunchAtLogin()
-            }
-            Divider()
-            Button("恢复隐藏的应用") {
-                NotificationCenter.default.post(name: Notification.Name("RestoreHiddenApps"), object: nil)
             }
             Divider()
             Button("退出 MyLaunchpad") {
                 NSApplication.shared.terminate(nil)
             }
+        }
+    }
+
+    private func openSettings() {
+        NSApp.activate(ignoringOtherApps: true)
+        if #available(macOS 14.0, *) {
+            NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+        } else {
+            NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
         }
     }
 }

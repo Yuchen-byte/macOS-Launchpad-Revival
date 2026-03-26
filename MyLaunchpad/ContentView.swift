@@ -9,7 +9,7 @@ import AppKit
 import SwiftUI
 
 struct ContentView: View {
-    @State var appManager = AppManager()
+    var appManager: AppManager
     @State private var currentPage: Int? = 0
     @State private var dragLocation: CGPoint? = nil
     @State private var lastPageTurnTime = Date()
@@ -26,6 +26,7 @@ struct ContentView: View {
     @State private var isOptionHandled: Bool = false
     @State private var flagsMonitor: Any? = nil
     @State private var appToUninstall: AppInfo? = nil
+    @State private var isVisible: Bool = false
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 20), count: 7)
     private let reorderAnimation = Animation.interactiveSpring(
@@ -34,6 +35,7 @@ struct ContentView: View {
         blendDuration: 0.1
     )
     private let folderAnimation = Animation.spring(response: 0.35, dampingFraction: 0.85)
+    private let entranceAnimation = Animation.spring(response: 0.35, dampingFraction: 0.8)
 
     private var activeOpenedFolder: LaunchpadItem? {
         guard let openedFolder else {
@@ -51,6 +53,7 @@ struct ContentView: View {
         ZStack {
             VisualEffectView(material: .popover, blendingMode: .behindWindow)
                 .ignoresSafeArea()
+                .opacity(isVisible ? 1.0 : 0.0)
 
             Color.clear
                 .contentShape(Rectangle())
@@ -64,6 +67,9 @@ struct ContentView: View {
 
                 pageIndicator
             }
+            .scaleEffect(isVisible ? 1.0 : 0.92)
+            .blur(radius: isVisible ? 0 : 10)
+            .opacity(isVisible ? 1.0 : 0.0)
 
             if let folder = activeOpenedFolder {
                 FolderOverlayView(
@@ -101,6 +107,9 @@ struct ContentView: View {
             appManager.fetchApps()
             installKeyMonitorIfNeeded()
             installFlagsMonitorIfNeeded()
+            withAnimation(entranceAnimation) {
+                isVisible = true
+            }
         }
         .onPreferenceChange(ItemFramePreferenceKey.self) { frames in
             itemFrames = frames
@@ -108,8 +117,16 @@ struct ContentView: View {
         .onPreferenceChange(RootFramePreferenceKey.self) { frame in
             rootFrame = frame
         }
+        .onReceive(NotificationCenter.default.publisher(for: .launchpadWillShow)) { _ in
+            withAnimation(entranceAnimation) {
+                isVisible = true
+            }
+        }
         .onReceive(NotificationCenter.default.publisher(for: .launchpadWillHide)) { _ in
             appToUninstall = nil
+            withAnimation(entranceAnimation) {
+                isVisible = false
+            }
             withAnimation(folderAnimation) {
                 openedFolder = nil
                 isFolderEscaped = false
@@ -147,9 +164,6 @@ struct ContentView: View {
             }
         } message: {
             Text("此操作将把该应用移入废纸篓，该操作不可撤销。")
-        }
-        .onReceive(NotificationCenter.default.publisher(for: Notification.Name("RestoreHiddenApps"))) { _ in
-            appManager.restoreHiddenApps()
         }
     }
 
@@ -614,6 +628,6 @@ private struct RootFramePreferenceKey: PreferenceKey {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(appManager: AppManager())
     }
 }
