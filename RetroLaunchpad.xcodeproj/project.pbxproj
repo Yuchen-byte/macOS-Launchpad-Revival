@@ -3,20 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 100;
 	objects = {
 
 /* Begin PBXFileReference section */
-		7435FEAF2F73D3E800904FB5 /* MyLaunchpad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLaunchpad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7435FEAF2F73D3E800904FB5 /* RetroLaunchpad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RetroLaunchpad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		7435FED62F744C5200904FB5 /* Exceptions for "MyLaunchpad" folder in "MyLaunchpad" target */ = {
+		7435FED62F744C5200904FB5 /* Exceptions for "MyLaunchpad" folder in "RetroLaunchpad" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 7435FEAE2F73D3E800904FB5 /* MyLaunchpad */;
+			target = 7435FEAE2F73D3E800904FB5 /* RetroLaunchpad */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -24,7 +24,7 @@
 		7435FEB12F73D3E800904FB5 /* MyLaunchpad */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				7435FED62F744C5200904FB5 /* Exceptions for "MyLaunchpad" folder in "MyLaunchpad" target */,
+				7435FED62F744C5200904FB5 /* Exceptions for "MyLaunchpad" folder in "RetroLaunchpad" target */,
 			);
 			path = MyLaunchpad;
 			sourceTree = "<group>";
@@ -34,10 +34,8 @@
 /* Begin PBXFrameworksBuildPhase section */
 		7435FEAC2F73D3E800904FB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -53,7 +51,7 @@
 		7435FEB02F73D3E800904FB5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7435FEAF2F73D3E800904FB5 /* MyLaunchpad.app */,
+				7435FEAF2F73D3E800904FB5 /* RetroLaunchpad.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,9 +59,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7435FEAE2F73D3E800904FB5 /* MyLaunchpad */ = {
+		7435FEAE2F73D3E800904FB5 /* RetroLaunchpad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7435FEBA2F73D3E800904FB5 /* Build configuration list for PBXNativeTarget "MyLaunchpad" */;
+			buildConfigurationList = 7435FEBA2F73D3E800904FB5 /* Build configuration list for PBXNativeTarget "RetroLaunchpad" */;
 			buildPhases = (
 				7435FEAB2F73D3E800904FB5 /* Sources */,
 				7435FEAC2F73D3E800904FB5 /* Frameworks */,
@@ -71,16 +69,12 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				7435FEB12F73D3E800904FB5 /* MyLaunchpad */,
 			);
-			name = MyLaunchpad;
-			packageProductDependencies = (
-			);
+			name = RetroLaunchpad;
 			productName = MyLaunchpad;
-			productReference = 7435FEAF2F73D3E800904FB5 /* MyLaunchpad.app */;
+			productReference = 7435FEAF2F73D3E800904FB5 /* RetroLaunchpad.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +92,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7435FEAA2F73D3E800904FB5 /* Build configuration list for PBXProject "MyLaunchpad" */;
+			buildConfigurationList = 7435FEAA2F73D3E800904FB5 /* Build configuration list for PBXProject "RetroLaunchpad" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -107,12 +101,12 @@
 			);
 			mainGroup = 7435FEA62F73D3E800904FB5;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = 7435FEB02F73D3E800904FB5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7435FEAE2F73D3E800904FB5 /* MyLaunchpad */,
+				7435FEAE2F73D3E800904FB5 /* RetroLaunchpad */,
 			);
 		};
 /* End PBXProject section */
@@ -120,25 +114,21 @@
 /* Begin PBXResourcesBuildPhase section */
 		7435FEAD2F73D3E800904FB5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7435FEAB2F73D3E800904FB5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		7435FEB82F73D3E800904FB5 /* Debug */ = {
+		7435FEB82F73D3E800904FB5 /* Debug configuration for PBXProject "RetroLaunchpad" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -201,7 +191,7 @@
 			};
 			name = Debug;
 		};
-		7435FEB92F73D3E800904FB5 /* Release */ = {
+		7435FEB92F73D3E800904FB5 /* Release configuration for PBXProject "RetroLaunchpad" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -256,11 +246,13 @@
 			};
 			name = Release;
 		};
-		7435FEBB2F73D3E800904FB5 /* Debug */ = {
+		7435FEBB2F73D3E800904FB5 /* Debug configuration for PBXNativeTarget "RetroLaunchpad" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=macosx*]" = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -269,13 +261,15 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyLaunchpad/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_CFBundleDisplayName = RetroLaunchpad;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.func.MyLaunchpad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -288,11 +282,13 @@
 			};
 			name = Debug;
 		};
-		7435FEBC2F73D3E800904FB5 /* Release */ = {
+		7435FEBC2F73D3E800904FB5 /* Release configuration for PBXNativeTarget "RetroLaunchpad" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"ASSETCATALOG_COMPILER_APPICON_NAME[sdk=macosx*]" = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -301,13 +297,15 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyLaunchpad/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_CFBundleDisplayName = RetroLaunchpad;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.func.MyLaunchpad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -323,22 +321,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7435FEAA2F73D3E800904FB5 /* Build configuration list for PBXProject "MyLaunchpad" */ = {
+		7435FEAA2F73D3E800904FB5 /* Build configuration list for PBXProject "RetroLaunchpad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7435FEB82F73D3E800904FB5 /* Debug */,
-				7435FEB92F73D3E800904FB5 /* Release */,
+				7435FEB82F73D3E800904FB5 /* Debug configuration for PBXProject "RetroLaunchpad" */,
+				7435FEB92F73D3E800904FB5 /* Release configuration for PBXProject "RetroLaunchpad" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7435FEBA2F73D3E800904FB5 /* Build configuration list for PBXNativeTarget "MyLaunchpad" */ = {
+		7435FEBA2F73D3E800904FB5 /* Build configuration list for PBXNativeTarget "RetroLaunchpad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7435FEBB2F73D3E800904FB5 /* Debug */,
-				7435FEBC2F73D3E800904FB5 /* Release */,
+				7435FEBB2F73D3E800904FB5 /* Debug configuration for PBXNativeTarget "RetroLaunchpad" */,
+				7435FEBC2F73D3E800904FB5 /* Release configuration for PBXNativeTarget "RetroLaunchpad" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
