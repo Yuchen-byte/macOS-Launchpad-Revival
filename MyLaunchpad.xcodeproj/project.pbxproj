@@ -10,9 +10,22 @@
 		7435FEAF2F73D3E800904FB5 /* MyLaunchpad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLaunchpad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		7435FED62F744C5200904FB5 /* Exceptions for "MyLaunchpad" folder in "MyLaunchpad" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7435FEAE2F73D3E800904FB5 /* MyLaunchpad */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		7435FEB12F73D3E800904FB5 /* MyLaunchpad */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7435FED62F744C5200904FB5 /* Exceptions for "MyLaunchpad" folder in "MyLaunchpad" target */,
+			);
 			path = MyLaunchpad;
 			sourceTree = "<group>";
 		};
@@ -255,6 +268,9 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyLaunchpad/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -285,6 +301,9 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyLaunchpad/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
